@@ -92,14 +92,11 @@ public class StoreResource {
     entity.name = updatedStore.name;
     entity.quantityProductsInStock = updatedStore.quantityProductsInStock;
 
-    // Register callback to notify legacy system after transaction commits
-    // Use entity (not updatedStore) as it has the persisted ID
     final Store storeToSync = entity;
     transactionSynchronizationRegistry.registerInterposedSynchronization(
         new jakarta.transaction.Synchronization() {
           @Override
           public void beforeCompletion() {
-            // Nothing to do before completion
           }
 
           @Override
@@ -135,14 +132,11 @@ public class StoreResource {
       entity.quantityProductsInStock = updatedStore.quantityProductsInStock;
     }
 
-    // Register callback to notify legacy system after transaction commits
-    // Use entity (not updatedStore) as it has the persisted ID
     final Store storeToSync = entity;
     transactionSynchronizationRegistry.registerInterposedSynchronization(
         new jakarta.transaction.Synchronization() {
           @Override
           public void beforeCompletion() {
-            // Nothing to do before completion
           }
 
           @Override
